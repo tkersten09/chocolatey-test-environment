@@ -22,20 +22,21 @@ Vagrant.configure("2") do |config|
     # Show the GUI
     v.gui = true
     # 4GB RAM
-    v.customize ["modifyvm", :id, "--memory", "4096"]
-    # 2 CPUs
-    v.customize ["modifyvm", :id, "--cpus", "2"]
+    v.customize ["modifyvm", :id, "--memory", "2596"]
+    # v.customize ["modifyvm", :id, "--memory", 2000]
+    # 4 CPUs
+    #v.customize ["modifyvm", :id, "--cpus", "2"]
     # Video RAM is 32 MB
-    v.customize ["modifyvm", :id, "--vram", 32]
+    #v.customize ["modifyvm", :id, "--vram", 32]
     # For better DNS resolution
     v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
     # No audo
-    v.customize ["modifyvm", :id, "--audio", "none"]
+    #v.customize ["modifyvm", :id, "--audio", "none"]
     # Clipboard enabled
     v.customize ["modifyvm", :id, "--clipboard", "bidirectional"]
     v.customize ["modifyvm", :id, "--draganddrop", "hosttoguest"]
     # For performance
-    v.customize ["modifyvm", :id, "--usb", "off"]
+    #v.customize ["modifyvm", :id, "--usb", "off"]
     # Huge performance gain here
     v.linked_clone = true if Vagrant::VERSION >= '1.8.0'
   end
@@ -86,6 +87,8 @@ Vagrant.configure("2") do |config|
   # the host and shares it with the guest (vagrant) image. The entire folder
   # where the Vagrantfile is located is always shared as `c:\vagrant` (the
   # naming of this directory being `vagrant` is just a coincedence).
+  # Share `data` directory as `C:\data`
+  config.vm.synced_folder "/media/kersten/SSD-Daten/data", "/data"
   # Share `packages` directory as `C:\packages`
   config.vm.synced_folder "packages", "/packages"
   #config.vm.synced_folder "temp", "/Users/vagrant/AppData/Local/Temp/chocolatey"
